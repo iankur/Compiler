@@ -34,13 +34,14 @@ int partition(int a[],int l, int h, int pivot){
 int main(void) {
 	// your code goes here
 	int n,i,j;
-	scanf("%d",&n);
 	int a[i];
+	int rank,ans,pivot,l,h,flag=1;
+	scanf("%d",&n);
 	for(i=0;i<n;i++){
 		scanf("%d",&a[i]);
 	}
 
-	int rank,ans,pivot,l,h,flag=1;
+	
 	l=0;
 	h=n-1;
 	pivot=a[l];

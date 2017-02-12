@@ -1,14 +1,6 @@
-
-all: ../bin/parser
-
-lex.yy.c: scan.l y.tab.h
-	lex scan.l
-
-y.tab.h y.tab.c: grammar.y
-	bison -dy grammar.y
-
-../bin/lexer: lex.yy.c y.tab.c y.tab.h
-	gcc -g lex.yy.c -o ../bin/lexer
-
-../bin/parser: grammar.y y.tab.c y.tab.h
-	gcc -g y.tab.c -o ../bin/scanner -lfl
+clean:
+	if [ -f parsetab.py ] ; then rm parsetab.py; fi
+	if [ -f parsetab.pyc ] ; then rm parsetab.pyc; fi
+	if [ -f scanner.pyc ] ; then rm scanner.pyc; fi
+	if [ -f parser.out ] ; then rm parser.out; fi
+	if [ -f ../tree ] ; then rm ../tree; fi

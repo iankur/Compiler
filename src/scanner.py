@@ -9,7 +9,7 @@ E     = r'([Ee][+-]?{D}+)'
 FS    = r'(f|F|l|L)'
 IS    = r'((u|U|l|L)*)'
 '''
-
+flag=2
 
 reserved ={ 
 	'auto' : 'AUTO',
@@ -249,21 +249,21 @@ def t_error(t):
 
 # Build the lexer
 lexer = lex.lex()
+if flag==2:
+	fd = open(sys.argv[1], 'r')
+	data = fd.read()
+	fd.close()
 
-fd = open(sys.argv[1], 'r')
-data = fd.read()
-print data
-fd.close()
+	# Give the lexer some input
+	lexer.input(data)
 
-# Give the lexer some input
-lexer.input(data)
-
-#print tokens
+# #print tokens
 
 # Tokenize
-while True:
-    tok = lexer.token()
-    if not tok: 
-        break      # No more input
-    print(tok.type, tok.value)
+
+	while True:
+	    tok = lexer.token()
+	    if not tok: 
+	        break      # No more input
+	    print(tok.type, tok.value)
 
