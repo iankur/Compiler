@@ -175,11 +175,11 @@ int check_type()
 }
 
 int main(int argc, char *argv[]) {
-    int token;
+/*    int token;
     yyin = fopen(argv[1], "r");
     while(token = yylex()) {
         printf("Found %d token for %s\n", token, yytext);
     }
     fclose(yyin);
-    return 0;
+  */  return 0;
 }

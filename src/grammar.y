@@ -1,4 +1,12 @@
-    This grammar has been taken from https://www.lysator.liu.se/c/ANSI-C-grammar-y.html
+    /*This grammar has been taken from https://www.lysator.liu.se/c/ANSI-C-grammar-y.html*/
+%{
+#include <stdio.h>
+
+extern char yytext[];
+extern int yylex(void);
+extern FILE *yyin;
+extern int column;
+%}
 
 %token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
 %token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
@@ -417,14 +425,23 @@ function_definition
     ;
 
 %%
+/*
 #include <stdio.h>
 
 extern char yytext[];
+extern int yylex(void);
+extern FILE *yyin;
 extern int column;
-
+*/
 yyerror(s)
 char *s;
 {
     fflush(stdout);
     printf("\n%*s\n%*s\n", column, "^", column, s);
+}
+
+int main(int argc, char *argv[]) {
+    yyin = fopen(argv[1], "r");
+    yyparse();
+    return 0;
 }
